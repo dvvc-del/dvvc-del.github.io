@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>忘记密码</title>
+    <link rel="stylesheet" href="Forget.css">
+</head>
+<body>
+    <div class="forgot-password-container">
+        <h1>忘记密码</h1>
+        <form id="forgotPasswordForm">
+            <div class="input-group">
+                <label for="email">邮箱</label>
+                <input type="email" id="email" name="email" required placeholder="请输入注册时的邮箱">
+            </div>
+            <div class="input-group">
+                <label for="newPassword">密码</label>
+                <input type="password" id="newPassword" name="newPassword" required placeholder="请输入新密码">
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">确认密码</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="请确认新密码">
+            </div>
+            <div class="input-group">
+                <label for="captcha">验证码</label>
+                <input type="text" id="captcha" name="captcha" required placeholder="请输入验证码">
+                <button type="button" id="getCaptcha">获取验证码</button>
+                <p id="captchaTimer"></p> 
+            </div>
+            <button type="submit" id="completeButton">完成</button>
+        </form>
+        <p class="error-message" id="errorMessage"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="ForgetTools.js"></script>
+</body>
+</html>
