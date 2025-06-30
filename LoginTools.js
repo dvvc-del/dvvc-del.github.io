@@ -15,7 +15,7 @@ loginForm.addEventListener('submit', function(event) {
     console.log('Sending login request:', userAccount, password); // 调试：打印发送的数据
 
     // 使用axios发送POST请求
-    axios.post('https://dvvc-del.github.io/api/login', {
+    axios.post('http://localhost:8080/api/login', {
         userAccount: userAccount,
         password: password
     })

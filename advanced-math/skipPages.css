@@ -1,0 +1,27 @@
+/* 导航按钮样式 */
+.navigation {
+    display: flex; /* 使用 flex 布局 */
+    justify-content: center; /* 水平居中 */
+    margin-bottom: 20px;
+}
+
+.navigation button {
+    padding: 10px 20px;
+    margin: 0 10px; /* 按钮之间的间距 */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.navigation button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.navigation button:hover:not(:disabled) {
+    background-color: #45a049;
+}

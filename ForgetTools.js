@@ -26,7 +26,7 @@ forgotPasswordForm.addEventListener('submit', async (event) => {
     }
 
     // 使用axios发送POST请求验证验证码
-    axios.post('https://dvvc-del.github.io/api/verify-code', {
+    axios.post('http://localhost:8080/api/verify-code', {
         email: email,
         code: captcha
     })
@@ -50,7 +50,7 @@ forgotPasswordForm.addEventListener('submit', async (event) => {
 
 // 重置密码的逻辑
 function resetPassword(email, newPassword, confirmPassword) {
-    axios.post('https://dvvc-del.github.io/api/forget', {
+    axios.post('http://localhost:8080/api/forget', {
         email: email,
         newPassword: newPassword,
         confirmPassword: confirmPassword
@@ -83,7 +83,7 @@ function getCaptcha() {
         return;
     }
 
-    axios.post('https://dvvc-del.github.io/api/send-email', {
+    axios.post('http://localhost:8080/api/send-email', {
         email: email
     })
     .then(response => {

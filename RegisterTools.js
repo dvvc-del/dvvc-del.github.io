@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('password').value;
 
         // 使用axios发送POST请求
-        axios.post('https://dvvc-del.github.io/api/register', {
+        axios.post('http://localhost:8080/api/register', {
             userAccount: userAccount,
             userName: userName,
             email: email,

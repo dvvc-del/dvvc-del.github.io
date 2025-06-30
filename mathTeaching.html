@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学学习平台</title>
+    <link rel="stylesheet" href="mathTeaching.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">数学学习平台</div>
+            
+            <div class="nav-links">
+                <a href="advanced-math.html">高等数学</a>
+                <a href="linear-algebra.html">线性代数</a>
+                <a href="probability.html">概率论与数理统计</a>
+                <a href="zhangyu-1000.html">张宇1000基础题</a>
+                <a href="cmc-competition.html">CMC竞赛</a>
+            </div>
+            
+            <div class="user-profile">
+                <img src="images/default-avatar.jpg" alt="用户头像" class="user-avatar" id="userAvatar">
+                <span class="username" id="username">请登录</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>欢迎来到数学学习平台</h1>
+        <!-- Your page content here -->
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item">
+                    <a href="advanced-math.html"><img src="images/advanced-math.jpg" alt="高等数学" title="高等数学"></a>
+                    <div class="carousel-caption">高等数学</div>
+                </div>
+                <div class="carousel-item">
+                    <a href="advanced-math.html"><img src="images/linear-algebra.jpg" alt="线性代数" title="线性代数"></a>
+                    <div class="carousel-caption">线性代数</div>
+                </div>
+                <div class="carousel-item">
+                    <a href="advanced-math.html"><img src="images/probability.jpg" alt="概率论与数理统计" title="概率论与数理统计"></a>
+                    <div class="carousel-caption">概率论与数理统计</div>
+                </div>
+                <div class="carousel-item">
+                    <a href="advanced-math.html"><img src="images/zhangyu-1000.jpg" alt="张宇1000题" title="张宇1000基础题"></a>
+                    <div class="carousel-caption">张宇1000题</div>
+                </div>
+                <div class="carousel-item">
+                    <a href="advanced-math.html"><img src="images/cmc.jpg" alt="CMC竞赛" title="CMC竞赛"></a>
+                    <div class="carousel-caption">CMC竞赛</div>
+                </div>
+            </div>
+            
+            <!-- 导航按钮 -->
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+            <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+            
+            <!-- 指示点 -->
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="mathTeaching.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.chapter {
+    margin-bottom: 20px;
+}
+
+.chapter h2 {
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.chapter ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chapter ul li {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.chapter ul li:hover {
+    background: #e0e0e0;
+}
+
+.chapter ul li a {
+    text-decoration: none;
+    color: #333; /* 设置链接颜色为文本颜色 */
+    font-weight: bold;
+}
+
+.chapter ul li a:hover {
+    text-decoration: underline;
+}
