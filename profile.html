@@ -293,7 +293,7 @@
         }).then(res => {
             alert("密码修改成功，请重新登录");
             localStorage.removeItem("token");
-            window.location.href = "login.html";
+            window.location.href = "Login.html";
         }).catch(err => {
             alert(err.response.data);
         });
