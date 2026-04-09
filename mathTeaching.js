@@ -69,7 +69,7 @@ function fetchUserData() {
     .catch(err => {
         console.error("获取用户信息失败", err);
         usernameElement.textContent = "请登录";
-        avatarElement.src = "http://localhost:8080/images/default-avatar.jpg";
+        avatarElement.src = "https://dvvc-del.github.io/images/default-avatar.jpg";
     });
 }
 
