@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 高亮当前页面链接
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('.nav-links a');
     
@@ -9,46 +8,69 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 用户菜单交互
+    // 加载用户信息
+    fetchUserData();
+
+    // 用户菜单点击
     const userProfile = document.querySelector('.user-profile');
     userProfile.addEventListener('click', function() {
-        // 获取用户登录状态
         const usernameElement = document.getElementById('username');
         const isLoggedIn = usernameElement.textContent !== '请登录';
 
-        // 根据登录状态跳转到不同页面
         if (isLoggedIn) {
-            window.location.href = 'profile.html'; // 跳转到个人简介页面
+            window.location.href = 'profile.html';
         } else {
-            window.location.href = 'login.html'; // 跳转到登录页面
+            window.location.href = 'Login.html';
         }
     });
 
-    // 从后端获取用户数据
-    fetchUserData();
+    // 轮播图
+    showSlide(0);
+    startAutoSlide();
+    
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+    carouselContainer.addEventListener('mouseleave', startAutoSlide);
 });
 
+// ==========================================
+// 修复完成：从数据库读取用户信息
+// ==========================================
 function fetchUserData() {
-    axios.get('/api/user')
-        .then(response => {
-            updateUserUI(response.data);
-        })
-        .catch(error => {
-            console.error('Error fetching user data:', error);
-        });
-}
-
-function updateUserUI(userData) {
-    const avatarElement = document.getElementById('userAvatar');
+    // ✅ 修复：必须先获取元素，否则报错
     const usernameElement = document.getElementById('username');
-    
-    if (userData.isLoggedIn) {
-        avatarElement.src = userData.avatar || "images/default-avatar.jpg"; // 如果没有头像，使用默认头像
-        usernameElement.textContent = userData.username || "未知用户";
-    } else {
-        avatarElement.src = "images/default-avatar.jpg";
+    const avatarElement = document.getElementById('userAvatar');
+    const token = localStorage.getItem('token');
+
+    if (!token) {
         usernameElement.textContent = "请登录";
+        avatarElement.src = "/images/default-avatar.jpg";
+        return;
     }
+
+    // 带 token 请求后端
+    axios.get("http://localhost:8080/api/user", {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    .then(response => {
+        const user = response.data;
+
+        // ✅ 修复：后端返回的是 isLoggedIn，不是 loggedIn
+        if (user.isLoggedIn) {
+            usernameElement.textContent = user.username;
+            avatarElement.src = "http://localhost:8080/images/" + user.avatar;
+        } else {
+            usernameElement.textContent = "请登录";
+            avatarElement.src = "http://localhost:8080/images/default-avatar.jpg";
+        }
+    })
+    .catch(err => {
+        console.error("获取用户信息失败", err);
+        usernameElement.textContent = "请登录";
+        avatarElement.src = "http://localhost:8080/images/default-avatar.jpg";
+    });
 }
 
 // 轮播图功能
@@ -58,20 +80,13 @@ const dots = document.querySelectorAll('.dot');
 const totalSlides = slides.length;
 
 function showSlide(index) {
-    // 处理边界情况
-    if (index >= totalSlides) {
-        currentIndex = 0;
-    } else if (index < 0) {
-        currentIndex = totalSlides - 1;
-    } else {
-        currentIndex = index;
-    }
+    if (index >= totalSlides) currentIndex = 0;
+    else if (index < 0) currentIndex = totalSlides - 1;
+    else currentIndex = index;
     
-    // 移动轮播图
     const carousel = document.querySelector('.carousel');
     carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // 更新指示点状态
     dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
     });
@@ -85,25 +100,10 @@ function currentSlide(index) {
     showSlide(index - 1);
 }
 
-// 自动轮播（可选）
 let autoSlideInterval;
 function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-        moveSlide(1);
-    }, 2000); // 3秒切换一次
+    autoSlideInterval = setInterval(() => moveSlide(1), 2000);
 }
-
 function stopAutoSlide() {
     clearInterval(autoSlideInterval);
 }
-
-// 初始化
-document.addEventListener('DOMContentLoaded', () => {
-    showSlide(0);
-    startAutoSlide();
-    
-    // 鼠标悬停时暂停自动轮播
-    const carouselContainer = document.querySelector('.carousel-container');
-    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
-    carouselContainer.addEventListener('mouseleave', startAutoSlide);
-});
