@@ -60,10 +60,10 @@ function fetchUserData() {
         // ✅ 修复：后端返回的是 isLoggedIn，不是 loggedIn
         if (user.isLoggedIn) {
             usernameElement.textContent = user.username;
-            avatarElement.src = "http://localhost:8080/images/" + user.avatar;
+            avatarElement.src = "https://dvvc-del.github.io/images/" + user.avatar;
         } else {
             usernameElement.textContent = "请登录";
-            avatarElement.src = "http://localhost:8080/images/default-avatar.jpg";
+            avatarElement.src = "https://dvvc-del.github.io/images/default-avatar.jpg";
         }
     })
     .catch(err => {
